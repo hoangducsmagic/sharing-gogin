@@ -9,7 +9,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
-var secretKey=utils.GoDotEnv("SECRET_KEY");
+var secretKey=utils.GetEnvVariable("SECRET_KEY");
 
 type authCustomClaims struct {
 	User models.User

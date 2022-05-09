@@ -9,7 +9,7 @@ import (
 )
 
 func ConnectMongodb() *mongo.Client{
-	var uri=utils.GoDotEnv("CONNECTION_STRING");
+	var uri=utils.GetEnvVariable("CONNECTION_STRING");
 	db,err:=mongo.Connect(context.TODO(),options.Client().ApplyURI(uri));
 	if (err!=nil){
 		panic(err)
