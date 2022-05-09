@@ -1,10 +1,11 @@
 package main
 
 import (
-	productcontrollers "sharing-gogin/controllers/productControllers"
+	"sharing-gogin/controllers/productControllers"
 	"sharing-gogin/controllers/userControllers"
 	"sharing-gogin/middlewares"
 	"sharing-gogin/services"
+	"sharing-gogin/utils"
 	"sharing-gogin/validators"
 
 	"github.com/gin-gonic/gin"
@@ -14,7 +15,7 @@ import (
 
 func main(){
 	router:=gin.Default();
-	var address=":3000"
+	var address=":"+utils.GetEnvVariable("PORT");
 
 	var db=services.ConnectMongodb();
 	defer func(){
@@ -34,9 +35,9 @@ func main(){
 
 	productRouter.Use(middlewares.Auth());
 
-	productRouter.POST("/",productcontrollers.CreateProduct);
-	productRouter.GET("/",productcontrollers.SearchProduct);
-	productRouter.GET("/:id",productcontrollers.GetProduct);
+	productRouter.POST("/",productControllers.CreateProduct);
+	productRouter.GET("/",productControllers.SearchProduct);
+	productRouter.GET("/:id",productControllers.GetProduct);
 
 	userRouter.POST("/",userControllers.CreateUser);
 	userRouter.GET("/:username",userControllers.GetUser);

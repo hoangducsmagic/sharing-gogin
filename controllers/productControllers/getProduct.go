@@ -1,4 +1,4 @@
-package productcontrollers
+package productControllers
 
 import (
 	"context"
